@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xie Xiang — Geoinformatics & Intelligent Transportation</title>
+<meta name="description" content="Xie Xiang — MSc candidate in Geoinformatics Engineering at Politecnico di Milano. Research on multi-source data fusion, low-altitude air mobility, and spatial data analysis.">
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  color: #1d1d1f;
+  background: #fbfbfd;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #5a7a5e; text-decoration: none; transition: color 0.2s; }
+a:hover { color: #3d5a40; }
+
+/* ===== Container ===== */
+.container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== Nav ===== */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(251,251,253,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 14px 0;
+}
+nav .container { display: flex; justify-content: flex-end; gap: 24px; }
+nav a { font-size: 13px; font-weight: 500; color: #6e6e73; letter-spacing: 0.02em; text-transform: uppercase; }
+nav a:hover { color: #5a7a5e; }
+
+/* ===== Section ===== */
+.section { padding: 80px 0; }
+.section-title {
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #5a7a5e; margin-bottom: 28px;
+}
+
+/* ===== Hero ===== */
+.hero { padding: 100px 0 60px; }
+.hero-avatar {
+  width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
+  margin-bottom: 24px; background: #e8ebe4; display: block;
+}
+.hero-name { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+.hero-name-cn { font-size: 20px; font-weight: 400; color: #86868b; margin-bottom: 10px; }
+.hero-affiliation { font-size: 16px; color: #1d1d1f; margin-bottom: 4px; }
+.hero-tagline { font-size: 15px; color: #6e6e73; max-width: 520px; margin-bottom: 20px; }
+.hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 500; color: #5a7a5e;
+  background: rgba(90,122,94,0.08); padding: 6px 14px; border-radius: 20px;
+  transition: background 0.2s;
+}
+.hero-link:hover { background: rgba(90,122,94,0.15); }
+
+/* ===== About ===== */
+.about-text { font-size: 15px; color: #3a3a3c; max-width: 600px; }
+.about-text p + p { margin-top: 12px; }
+
+/* ===== Research Tags ===== */
+.tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag {
+  font-size: 13px; padding: 6px 16px; border-radius: 20px;
+  background: rgba(90,122,94,0.06); color: #5a7a5e;
+  border: 1px solid rgba(90,122,94,0.15);
+}
+
+/* ===== Publications ===== */
+.pub-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.pub-item:last-child { border-bottom: none; }
+.pub-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.pub-authors { font-size: 13px; color: #6e6e73; margin-bottom: 4px; }
+.pub-authors .me { color: #3d5a40; font-weight: 600; }
+.pub-venue { font-size: 13px; color: #86868b; margin-bottom: 6px; }
+.pub-badge {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 2px 10px; border-radius: 12px;
+  background: rgba(90,122,94,0.1); color: #5a7a5e;
+}
+
+/* ===== Project Cards ===== */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.project-card {
+  background: #fff; border-radius: 16px; padding: 22px;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.project-card-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.project-card-desc { font-size: 13px; color: #6e6e73; margin-bottom: 10px; line-height: 1.5; }
+.project-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.project-card-tag {
+  font-size: 11px; padding: 2px 10px; border-radius: 10px;
+  background: rgba(90,122,94,0.06); color: #5a7a5e;
+}
+.project-card-link { font-size: 12px; font-weight: 500; }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px;
+  width: 2px; background: rgba(90,122,94,0.2);
+}
+.timeline-item { position: relative; margin-bottom: 32px; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -23px; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #5a7a5e; border: 2px solid #fbfbfd;
+}
+.timeline-period { font-size: 12px; color: #86868b; margin-bottom: 2px; }
+.timeline-heading { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.timeline-sub { font-size: 13px; color: #6e6e73; }
+
+/* ===== Footer ===== */
+footer {
+  padding: 60px 0 40px; text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.footer-motto { font-size: 14px; color: #86868b; margin-bottom: 10px; font-style: italic; }
+.footer-links { display: flex; justify-content: center; gap: 20px; }
+.footer-links a { font-size: 13px; color: #6e6e73; }
+.footer-links a:hover { color: #5a7a5e; }
+.footer-copy { font-size: 12px; color: #aeaeb2; margin-top: 16px; }
+
+/* ===== Scroll Reveal ===== */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+  .hero-name { font-size: 28px; }
+  .section { padding: 50px 0; }
+  .projects-grid { grid-template-columns: 1fr; }
+  nav .container { justify-content: center; gap: 16px; }
+  nav a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-avatar" aria-label="Xie Xiang photo"></div>
+    <h1 class="hero-name">Xie Xiang</h1>
+    <p class="hero-name-cn">谢 翔</p>
+    <p class="hero-affiliation">M.Sc. Candidate, Geoinformatics Engineering</p>
+    <p class="hero-affiliation">Politecnico di Milano · 2025—2027</p>
+    <p class="hero-tagline">
+      Bridging geospatial intelligence and autonomous systems — building data infrastructure for the low-altitude economy.
+    </p>
+    <div class="hero-links">
+      <a class="hero-link" href="mailto:xiexiang924@outlook.com">✉ Email</a>
+      <a class="hero-link" href="https://github.com/XIEXIANG924" target="_blank">⌘ GitHub</a>
+      <a class="hero-link" href="#publications">📄 Publications</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section reveal" id="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <div class="about-text">
+      <p>
+        I am a first-year M.Sc. student in Geoinformatics Engineering at Politecnico di Milano, with a B.Eng. in Transportation Engineering. My work sits at the intersection of <strong>geospatial data science</strong>, <strong>multi-source IoT data fusion</strong>, and <strong>autonomous systems</strong> — building structured, trustworthy information layers that machines can rely on.
+      </p>
+      <p>
+        I am the first author of the <em>Location Prior Generation Framework</em> (LPGF), a quality-gated data fusion pipeline for low-altitude air mobility, currently under review at IEEE TITS. I have also led a national-level research project on urban travel behavior analysis (559K POI records), built a full-stack WebGIS platform for air quality monitoring in Portugal, and hold three invention patents.
+      </p>
+      <p>
+        I am an Erasmus+ scholarship recipient, an avid open-source contributor, and a multi-genre gamer who thinks about system design even when off the clock.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<section class="section reveal" id="research">
+  <div class="container">
+    <h2 class="section-title">Research Interests</h2>
+    <div class="tags">
+      <span class="tag">Low-Altitude Air Mobility (UAM / eVTOL)</span>
+      <span class="tag">Multi-Source IoT Data Fusion</span>
+      <span class="tag">Geospatial Data Science</span>
+      <span class="tag">Quality-Gated Data Pipelines</span>
+      <span class="tag">Computer Vision for Transportation</span>
+      <span class="tag">Spatial Statistics & Zonal Analysis</span>
+      <span class="tag">Autonomous Perception Systems</span>
+      <span class="tag">WebGIS & Geo-Visualization</span>
+    </div>
+  </div>
+</section>
+
+<!-- Publications -->
+<section class="section reveal" id="publications">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div class="pub-item">
+      <div class="pub-title">Location Prior Generation via Multi-Source Urban Data Fusion for Low-Altitude Air Mobility</div>
+      <div class="pub-authors"><span class="me">Xiang Xie</span>, Xiaonan Liu</div>
+      <div class="pub-venue">IEEE Transactions on Intelligent Transportation Systems (TITS)</div>
+      <span class="pub-badge">Under Review</span>
+    </div>
+    <!-- Placeholder for future publications -->
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section reveal" id="projects">
+  <div class="container">
+    <h2 class="section-title">Selected Projects</h2>
+    <div class="projects-grid">
+      <!-- LPGF -->
+      <div class="project-card">
+        <div class="project-card-title">LPGF — Location Prior Generation Framework</div>
+        <div class="project-card-desc">Quality-gated multi-source data fusion pipeline for low-altitude air mobility. IEEE TITS (Under Review).</div>
+        <div class="project-card-tags">
+          <span class="project-card-tag">Python</span>
+          <span class="project-card-tag">Sentinel-2</span>
+          <span class="project-card-tag">OSM</span>
+          <span class="project-card-tag">Quality Gate</span>
+        </div>
+      </div>
+      <!-- Portugal WebGIS -->
+      <div class="project-card">
+        <div class="project-card-title">Portugal Air Quality WebGIS</div>
+        <div class="project-card-desc">Full-stack spatial analysis platform for PM₁₀ / land-cover change. OpenLayers + GeoServer + Chart.js.</div>
+        <div class="project-card-tags">
+          <span class="project-card-tag">NetCDF</span>
+          <span class="project-card-tag">GDAL</span>
+          <span class="project-card-tag">OpenLayers</span>
+          <span class="project-card-tag">Chart.js</span>
+        </div>
+        <a class="project-card-link" href="https://xiexiang924.github.io/portugal-aq-webgis/" target="_blank">Live Demo →</a>
+        &nbsp;
+        <a class="project-card-link" href="https://github.com/XIEXIANG924/portugal-aq-webgis" target="_blank">GitHub →</a>
+      </div>
+      <!-- POI -->
+      <div class="project-card">
+        <div class="project-card-title">Urban Travel Behavior Analysis</div>
+        <div class="project-card-desc">559K POI records cleaned, standardized & modeled for travel demand prediction. National-level project.</div>
+        <div class="project-card-tags">
+          <span class="project-card-tag">MATLAB</span>
+          <span class="project-card-tag">Data Cleaning</span>
+          <span class="project-card-tag">Feature Engineering</span>
+        </div>
+      </div>
+      <!-- Drone Logistics -->
+      <div class="project-card">
+        <div class="project-card-title">Drone-Based Last-Mile Logistics</div>
+        <div class="project-card-desc">Dual-layer path optimization for autonomous drone delivery in locked-down zones. Patented.</div>
+        <div class="project-card-tags">
+          <span class="project-card-tag">OR Modeling</span>
+          <span class="project-card-tag">Simulation</span>
+          <span class="project-card-tag">Patent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="section reveal" id="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025.09 — 2027.09 (Expected)</div>
+        <div class="timeline-heading">M.Sc. Geoinformatics Engineering</div>
+        <div class="timeline-sub">Politecnico di Milano · Milan, Italy</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2026.05 — 2026.06</div>
+        <div class="timeline-heading">GIS Data Analyst & Tech Lead — Portugal Air Quality WebGIS</div>
+        <div class="timeline-sub">Politecnico di Milano GIS Lab · PM₁₀ spatial analysis, WebGIS full-stack development</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025.06 — 2025.07</div>
+        <div class="timeline-heading">Data Intern — RuiAiKe Business Consulting</div>
+        <div class="timeline-sub">Suzhou, China · Patent data crawling, industry trend analysis</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2024.05 — 2024.11</div>
+        <div class="timeline-heading">Reserve Outlet Manager — SF Express</div>
+        <div class="timeline-sub">Suzhou, China · Multi-role rotation, led STAR agile project for CBD route optimization (14K records)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2022.03 — 2024.03</div>
+        <div class="timeline-heading">National-Level Innovation Research Projects (×2)</div>
+        <div class="timeline-sub">Huai'an University · POI travel behavior (lead) + Drone logistics (core member)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2020.09 — 2024.06</div>
+        <div class="timeline-heading">B.Eng. Transportation Engineering</div>
+        <div class="timeline-sub">Huai'an University · GPA 85.99/100 (12/91) · Outstanding Graduate & Thesis (2/91)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p class="footer-motto">"Measure what matters. Build what lasts."</p>
+    <div class="footer-links">
+      <a href="mailto:xiexiang924@outlook.com">Email</a>
+      <a href="https://github.com/XIEXIANG924" target="_blank">GitHub</a>
+    </div>
+    <p class="footer-copy">© 2026 Xie Xiang · Milan / Suzhou</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Trigger hero immediately
+document.querySelector('.hero').classList.add('visible');
+
+// Nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) {
+      current = s.getAttribute('id');
+    }
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? '#5a7a5e' : '';
+  });
+});
+</script>
+
+</body>
+</html>
