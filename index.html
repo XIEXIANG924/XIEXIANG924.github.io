@@ -19,6 +19,15 @@ body {
 a { color: #5a7a5e; text-decoration: none; transition: color 0.2s; }
 a:hover { color: #3d5a40; }
 
+/* ===== Language toggle ===== */
+.lang-zh { display: none; }
+body.lang-zh .lang-zh { display: inline; }
+body.lang-zh .lang-en { display: none; }
+/* Block-level bilingual */
+body.lang-zh .lang-block-zh { display: block; }
+body.lang-zh .lang-block-en { display: none; }
+.lang-block-zh { display: none; }
+
 /* ===== Container ===== */
 .container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
 
@@ -29,9 +38,17 @@ nav {
   border-bottom: 1px solid rgba(0,0,0,0.06);
   padding: 14px 0;
 }
-nav .container { display: flex; justify-content: flex-end; gap: 24px; }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-links { display: flex; gap: 20px; }
 nav a { font-size: 13px; font-weight: 500; color: #6e6e73; letter-spacing: 0.02em; text-transform: uppercase; }
 nav a:hover { color: #5a7a5e; }
+.lang-toggle {
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  padding: 4px 12px; border-radius: 14px; border: 1px solid rgba(0,0,0,0.12);
+  background: transparent; color: #6e6e73;
+  transition: all 0.2s;
+}
+.lang-toggle:hover { border-color: #5a7a5e; color: #5a7a5e; }
 
 /* ===== Section ===== */
 .section { padding: 80px 0; }
@@ -138,39 +155,59 @@ footer {
   .hero-name { font-size: 28px; }
   .section { padding: 50px 0; }
   .projects-grid { grid-template-columns: 1fr; }
-  nav .container { justify-content: center; gap: 16px; }
+  nav .container { flex-wrap: wrap; }
+  .nav-links { gap: 12px; flex-wrap: wrap; }
   nav a { font-size: 11px; }
 }
 </style>
 </head>
-<body>
+<body class="lang-en">
 
 <!-- Nav -->
 <nav>
   <div class="container">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+    </div>
+    <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+      <span class="lang-en">中文</span>
+      <span class="lang-zh">EN</span>
+    </button>
   </div>
 </nav>
 
 <!-- Hero -->
-<section class="hero" id="home">
+<section class="hero reveal" id="home">
   <div class="container">
     <img src="assets/photo.jpg" class="hero-avatar" alt="Xie Xiang">
     <h1 class="hero-name">Xie Xiang</h1>
     <p class="hero-name-cn">谢 翔</p>
-    <p class="hero-affiliation">M.Sc. Candidate, Geoinformatics Engineering</p>
-    <p class="hero-affiliation">Politecnico di Milano · 2025—2027</p>
-    <p class="hero-tagline">
-      Bridging geospatial intelligence and autonomous systems — building data infrastructure for the low-altitude economy.
-    </p>
+
+    <!-- English -->
+    <div class="lang-block-en">
+      <p class="hero-affiliation">M.Sc. Candidate, Geoinformatics Engineering</p>
+      <p class="hero-affiliation">Politecnico di Milano · 2025—2027</p>
+      <p class="hero-tagline">
+        Bridging geospatial intelligence and autonomous systems — building data infrastructure for the low-altitude economy.
+      </p>
+    </div>
+    <!-- Chinese -->
+    <div class="lang-block-zh">
+      <p class="hero-affiliation">地理信息工程 硕士研究生</p>
+      <p class="hero-affiliation">米兰理工大学 · 2025—2027</p>
+      <p class="hero-tagline">
+        连接地理空间智能与自主系统 — 为低空经济构建数据基础设施。
+      </p>
+    </div>
+
     <div class="hero-links">
       <a class="hero-link" href="mailto:xiexiang924@outlook.com">✉ Email</a>
       <a class="hero-link" href="https://github.com/XIEXIANG924" target="_blank">⌘ GitHub</a>
-      <a class="hero-link" href="#publications">📄 Publications</a>
+      <a class="hero-link" href="#publications">📄 <span class="lang-en">Publications</span><span class="lang-zh">论文</span></a>
     </div>
   </div>
 </section>
@@ -178,8 +215,10 @@ footer {
 <!-- About -->
 <section class="section reveal" id="about">
   <div class="container">
-    <h2 class="section-title">About</h2>
-    <div class="about-text">
+    <h2 class="section-title"><span class="lang-en">About</span><span class="lang-zh">关于</span></h2>
+
+    <!-- English -->
+    <div class="about-text lang-block-en">
       <p>
         I am a first-year M.Sc. student in Geoinformatics Engineering at Politecnico di Milano, with a B.Eng. in Transportation Engineering. My work sits at the intersection of <strong>geospatial data science</strong>, <strong>multi-source IoT data fusion</strong>, and <strong>autonomous systems</strong> — building structured, trustworthy information layers that machines can rely on.
       </p>
@@ -190,13 +229,25 @@ footer {
         I am an Erasmus+ scholarship recipient, an avid open-source contributor, and a multi-genre gamer who thinks about system design even when off the clock.
       </p>
     </div>
+    <!-- Chinese -->
+    <div class="about-text lang-block-zh">
+      <p>
+        米兰理工大学地理信息工程硕士在读，本科毕业于淮安大学交通运输工程专业。研究方向聚焦于<strong>地理空间数据科学</strong>、<strong>多源 IoT 数据融合</strong>与<strong>自主系统</strong>——为机器构建结构化、可信赖的信息基础设施。
+      </p>
+      <p>
+        独立设计并实现<em>位置先验生成框架</em>（LPGF），面向低空经济提出质量门控的多源数据融合管道，论文投稿至 IEEE TITS（第一作者）。此外，还主导过国家级大创项目（55.9 万 POI 数据分析）、搭建了葡萄牙空气质量 WebGIS 全栈平台，持有 3 项发明专利。
+      </p>
+      <p>
+        Erasmus+ 全额奖学金获得者，开源贡献者，多类型游戏玩家——即使在屏幕之外也习惯从系统设计角度思考问题。
+      </p>
+    </div>
   </div>
 </section>
 
 <!-- Research -->
 <section class="section reveal" id="research">
   <div class="container">
-    <h2 class="section-title">Research Interests</h2>
+    <h2 class="section-title"><span class="lang-en">Research Interests</span><span class="lang-zh">研究兴趣</span></h2>
     <div class="tags">
       <span class="tag">Low-Altitude Air Mobility (UAM / eVTOL)</span>
       <span class="tag">Multi-Source IoT Data Fusion</span>
@@ -204,7 +255,7 @@ footer {
       <span class="tag">Quality-Gated Data Pipelines</span>
       <span class="tag">Computer Vision for Transportation</span>
       <span class="tag">Spatial Statistics & Zonal Analysis</span>
-      <span class="tag">Autonomous Perception Systems</span>
+      <span class="tag"><span class="lang-en">Autonomous Perception Systems</span><span class="lang-zh">自主感知系统</span></span>
       <span class="tag">WebGIS & Geo-Visualization</span>
     </div>
   </div>
@@ -213,26 +264,27 @@ footer {
 <!-- Publications -->
 <section class="section reveal" id="publications">
   <div class="container">
-    <h2 class="section-title">Publications</h2>
+    <h2 class="section-title"><span class="lang-en">Publications</span><span class="lang-zh">论文</span></h2>
     <div class="pub-item">
       <div class="pub-title">Location Prior Generation via Multi-Source Urban Data Fusion for Low-Altitude Air Mobility</div>
       <div class="pub-authors"><span class="me">Xiang Xie</span>, Xiaonan Liu</div>
       <div class="pub-venue">IEEE Transactions on Intelligent Transportation Systems (TITS)</div>
-      <span class="pub-badge">Under Review</span>
+      <span class="pub-badge"><span class="lang-en">Under Review</span><span class="lang-zh">审稿中</span></span>
     </div>
-    <!-- Placeholder for future publications -->
   </div>
 </section>
 
 <!-- Projects -->
 <section class="section reveal" id="projects">
   <div class="container">
-    <h2 class="section-title">Selected Projects</h2>
+    <h2 class="section-title"><span class="lang-en">Selected Projects</span><span class="lang-zh">精选项目</span></h2>
     <div class="projects-grid">
+
       <!-- LPGF -->
       <div class="project-card">
-        <div class="project-card-title">LPGF — Location Prior Generation Framework</div>
-        <div class="project-card-desc">Quality-gated multi-source data fusion pipeline for low-altitude air mobility. IEEE TITS (Under Review).</div>
+        <div class="project-card-title">LPGF — <span class="lang-en">Location Prior Generation Framework</span><span class="lang-zh">位置先验生成框架</span></div>
+        <div class="project-card-desc lang-block-en">Quality-gated multi-source data fusion pipeline for low-altitude air mobility. IEEE TITS (Under Review).</div>
+        <div class="project-card-desc lang-block-zh">面向低空经济的质量门控多源数据融合管道。IEEE TITS 审稿中。</div>
         <div class="project-card-tags">
           <span class="project-card-tag">Python</span>
           <span class="project-card-tag">Sentinel-2</span>
@@ -240,10 +292,12 @@ footer {
           <span class="project-card-tag">Quality Gate</span>
         </div>
       </div>
+
       <!-- Portugal WebGIS -->
       <div class="project-card">
-        <div class="project-card-title">Portugal Air Quality WebGIS</div>
-        <div class="project-card-desc">Full-stack spatial analysis platform for PM₁₀ / land-cover change. OpenLayers + GeoServer + Chart.js.</div>
+        <div class="project-card-title"><span class="lang-en">Portugal Air Quality WebGIS</span><span class="lang-zh">葡萄牙空气质量 WebGIS</span></div>
+        <div class="project-card-desc lang-block-en">Full-stack spatial analysis platform for PM₁₀ / land-cover change. OpenLayers + GeoServer + Chart.js.</div>
+        <div class="project-card-desc lang-block-zh">PM₁₀ 与土地覆盖变化空间分析全栈平台。OpenLayers + GeoServer + Chart.js。</div>
         <div class="project-card-tags">
           <span class="project-card-tag">NetCDF</span>
           <span class="project-card-tag">GDAL</span>
@@ -254,26 +308,31 @@ footer {
         &nbsp;
         <a class="project-card-link" href="https://github.com/XIEXIANG924/portugal-aq-webgis" target="_blank">GitHub →</a>
       </div>
+
       <!-- POI -->
       <div class="project-card">
-        <div class="project-card-title">Urban Travel Behavior Analysis</div>
-        <div class="project-card-desc">559K POI records cleaned, standardized & modeled for travel demand prediction. National-level project.</div>
+        <div class="project-card-title"><span class="lang-en">Urban Travel Behavior Analysis</span><span class="lang-zh">城市居民出行行为分析</span></div>
+        <div class="project-card-desc lang-block-en">559K POI records cleaned, standardized & modeled for travel demand prediction. National-level project.</div>
+        <div class="project-card-desc lang-block-zh">55.9 万条 POI 数据清洗、标准化与出行需求预测建模。国家级大创项目。</div>
         <div class="project-card-tags">
           <span class="project-card-tag">MATLAB</span>
-          <span class="project-card-tag">Data Cleaning</span>
-          <span class="project-card-tag">Feature Engineering</span>
+          <span class="project-card-tag"><span class="lang-en">Data Cleaning</span><span class="lang-zh">数据清洗</span></span>
+          <span class="project-card-tag"><span class="lang-en">Feature Engineering</span><span class="lang-zh">特征工程</span></span>
         </div>
       </div>
+
       <!-- Drone Logistics -->
       <div class="project-card">
-        <div class="project-card-title">Drone-Based Last-Mile Logistics</div>
-        <div class="project-card-desc">Dual-layer path optimization for autonomous drone delivery in locked-down zones. Patented.</div>
+        <div class="project-card-title"><span class="lang-en">Drone-Based Last-Mile Logistics</span><span class="lang-zh">无人机最后一公里配送</span></div>
+        <div class="project-card-desc lang-block-en">Dual-layer path optimization for autonomous drone delivery in locked-down zones. Patented.</div>
+        <div class="project-card-desc lang-block-zh">封闭区域自主无人机配送的双层路径优化方案。已获发明专利。</div>
         <div class="project-card-tags">
-          <span class="project-card-tag">OR Modeling</span>
-          <span class="project-card-tag">Simulation</span>
+          <span class="project-card-tag"><span class="lang-en">OR Modeling</span><span class="lang-zh">运筹建模</span></span>
+          <span class="project-card-tag"><span class="lang-en">Simulation</span><span class="lang-zh">仿真</span></span>
           <span class="project-card-tag">Patent</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -281,44 +340,57 @@ footer {
 <!-- Experience -->
 <section class="section reveal" id="experience">
   <div class="container">
-    <h2 class="section-title">Experience</h2>
+    <h2 class="section-title"><span class="lang-en">Experience</span><span class="lang-zh">经历</span></h2>
     <div class="timeline">
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-period">2025.09 — 2027.09 (Expected)</div>
-        <div class="timeline-heading">M.Sc. Geoinformatics Engineering</div>
+        <div class="timeline-period">2025.09 — 2027.09</div>
+        <div class="timeline-heading lang-block-en">M.Sc. Geoinformatics Engineering</div>
+        <div class="timeline-heading lang-block-zh">地理信息工程 理学硕士</div>
         <div class="timeline-sub">Politecnico di Milano · Milan, Italy</div>
       </div>
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2026.05 — 2026.06</div>
-        <div class="timeline-heading">GIS Data Analyst & Tech Lead — Portugal Air Quality WebGIS</div>
-        <div class="timeline-sub">Politecnico di Milano GIS Lab · PM₁₀ spatial analysis, WebGIS full-stack development</div>
+        <div class="timeline-heading lang-block-en">GIS Data Analyst & Tech Lead — Portugal Air Quality WebGIS</div>
+        <div class="timeline-heading lang-block-zh">GIS 数据分析师 & 技术负责人 — 葡萄牙空气质量 WebGIS</div>
+        <div class="timeline-sub">Politecnico di Milano GIS Lab</div>
       </div>
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2025.06 — 2025.07</div>
-        <div class="timeline-heading">Data Intern — RuiAiKe Business Consulting</div>
-        <div class="timeline-sub">Suzhou, China · Patent data crawling, industry trend analysis</div>
+        <div class="timeline-heading lang-block-en">Data Intern — RuiAiKe Business Consulting</div>
+        <div class="timeline-heading lang-block-zh">数据实习生 — 锐艾科商业咨询</div>
+        <div class="timeline-sub"><span class="lang-en">Suzhou, China · Patent data crawling, industry trend analysis</span><span class="lang-zh">苏州 · 专利数据爬取、行业趋势分析</span></div>
       </div>
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2024.05 — 2024.11</div>
-        <div class="timeline-heading">Reserve Outlet Manager — SF Express</div>
-        <div class="timeline-sub">Suzhou, China · Multi-role rotation, led STAR agile project for CBD route optimization (14K records)</div>
+        <div class="timeline-heading lang-block-en">Reserve Outlet Manager — SF Express</div>
+        <div class="timeline-heading lang-block-zh">储备网点负责人 — 顺丰速运</div>
+        <div class="timeline-sub"><span class="lang-en">Suzhou, China · Multi-role rotation, led STAR agile project for CBD route optimization</span><span class="lang-zh">苏州 · 多岗位轮岗，主导 CBD 路线优化 STAR 敏捷项目</span></div>
       </div>
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2022.03 — 2024.03</div>
-        <div class="timeline-heading">National-Level Innovation Research Projects (×2)</div>
-        <div class="timeline-sub">Huai'an University · POI travel behavior (lead) + Drone logistics (core member)</div>
+        <div class="timeline-heading lang-block-en">National-Level Innovation Research Projects (×2)</div>
+        <div class="timeline-heading lang-block-zh">国家级大学生创新创业项目（×2）</div>
+        <div class="timeline-sub"><span class="lang-en">Huai'an University · POI travel behavior (lead) + Drone logistics (core member)</span><span class="lang-zh">淮安大学 · POI 出行行为（负责人）+ 无人机物流（核心成员）</span></div>
       </div>
+
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2020.09 — 2024.06</div>
-        <div class="timeline-heading">B.Eng. Transportation Engineering</div>
-        <div class="timeline-sub">Huai'an University · GPA 85.99/100 (12/91) · Outstanding Graduate & Thesis (2/91)</div>
+        <div class="timeline-heading lang-block-en">B.Eng. Transportation Engineering</div>
+        <div class="timeline-heading lang-block-zh">交通运输 工学学士</div>
+        <div class="timeline-sub"><span class="lang-en">Huai'an University · GPA 85.99/100 (12/91) · Outstanding Graduate & Thesis (2/91)</span><span class="lang-zh">淮安大学 · GPA 85.99/100（12/91）· 优秀毕业生、优秀毕业设计（2/91）</span></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -326,7 +398,8 @@ footer {
 <!-- Footer -->
 <footer>
   <div class="container">
-    <p class="footer-motto">"Measure what matters. Build what lasts."</p>
+    <p class="footer-motto lang-block-en">"Measure what matters. Build what lasts."</p>
+    <p class="footer-motto lang-block-zh">"度量关键之事，构建持久之物。"</p>
     <div class="footer-links">
       <a href="mailto:xiexiang924@outlook.com">Email</a>
       <a href="https://github.com/XIEXIANG924" target="_blank">GitHub</a>
@@ -336,6 +409,32 @@ footer {
 </footer>
 
 <script>
+// Language toggle
+function toggleLang() {
+  const body = document.body;
+  if (body.classList.contains('lang-en')) {
+    body.classList.remove('lang-en');
+    body.classList.add('lang-zh');
+    document.documentElement.lang = 'zh';
+    localStorage.setItem('lang', 'zh');
+  } else {
+    body.classList.remove('lang-zh');
+    body.classList.add('lang-en');
+    document.documentElement.lang = 'en';
+    localStorage.setItem('lang', 'en');
+  }
+}
+
+// Load saved language preference (default to English)
+(function() {
+  const saved = localStorage.getItem('lang');
+  if (saved === 'zh') {
+    document.body.classList.remove('lang-en');
+    document.body.classList.add('lang-zh');
+    document.documentElement.lang = 'zh';
+  }
+})();
+
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -346,8 +445,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Trigger hero immediately
 document.querySelector('.hero').classList.add('visible');
 
 // Nav highlight on scroll
