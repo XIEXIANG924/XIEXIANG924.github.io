@@ -180,6 +180,25 @@ footer { padding: 60px 0 40px; text-align: center; border-top: 1px solid rgba(0,
 .footer-links a:hover { color: #5a7a5e; }
 .footer-copy { font-size: 12px; color: #aeaeb2; margin-top: 16px; }
 
+/* ===== Photography ===== */
+.photo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.photo-img {
+  aspect-ratio: 1; border-radius: 10px; cursor: pointer; object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%; background: #f0f0f0;
+}
+.photo-img:hover { transform: scale(1.02); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.photo-placeholder {
+  aspect-ratio: 1; border-radius: 10px; cursor: pointer;
+  background: linear-gradient(135deg, #e8ebe4 0%, #d5ddd0 100%);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed #bcc9b5; color: #8a9b84; font-size: 24px;
+  transition: opacity 0.2s;
+}
+.photo-placeholder:hover { opacity: 0.8; }
+
 /* ===== Scroll Reveal ===== */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -207,6 +226,7 @@ footer { padding: 60px 0 40px; text-align: center; border-top: 1px solid rgba(0,
       <a href="#publications">Publications</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#photography">📷</a>
     </div>
     <button class="lang-toggle" id="langToggle">中文</button>
   </div>
@@ -415,6 +435,22 @@ footer { padding: 60px 0 40px; text-align: center; border-top: 1px solid rgba(0,
   </div>
 </section>
 
+<!-- Photography -->
+<section class="section reveal" id="photography">
+  <div class="container">
+    <h2 class="section-title" id="photoTitle">Photography</h2>
+    <div class="photo-grid" id="photoGrid">
+      <img class="photo-img" src="assets/photography/photo-01.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-02.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-03.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-04.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-05.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-06.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+      <img class="photo-img" src="assets/photography/photo-07.jpg" onclick="openLightbox(this)" alt="photo" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="container">
@@ -439,7 +475,7 @@ const lang = {
   zh: {
     toggle: "EN", pubLink: "📄 论文",
     aboutTitle: "关于", researchTitle: "研究兴趣", pubTitle: "论文", projectsTitle: "精选项目", expTitle: "经历",
-    pubBadge: "审稿中",
+    pubBadge: "审稿中", photoTitle: "摄影",
     heroEn: "none", heroZh: "block", aboutEn: "none", aboutZh: "block",
     p1Title: "LPGF — 位置先验生成框架",
     p1Meta: "Xiang Xie, Xiaonan Liu · IEEE TITS（审稿中）",
@@ -469,7 +505,7 @@ const lang = {
   en: {
     toggle: "中文", pubLink: "📄 Publications",
     aboutTitle: "About", researchTitle: "Research Interests", pubTitle: "Publications", projectsTitle: "Selected Projects", expTitle: "Experience",
-    pubBadge: "Under Review",
+    pubBadge: "Under Review", photoTitle: "Photography",
     heroEn: "block", heroZh: "none", aboutEn: "block", aboutZh: "none",
     p1Title: "LPGF — Location Prior Generation Framework",
     p1Meta: "Xiang Xie, Xiaonan Liu · IEEE TITS (Under Review)",
@@ -508,6 +544,7 @@ function setLang(l) {
   document.getElementById('pubTitle').textContent = d.pubTitle;
   document.getElementById('projectsTitle').textContent = d.projectsTitle;
   document.getElementById('expTitle').textContent = d.expTitle;
+  document.getElementById('photoTitle').textContent = d.photoTitle;
   document.getElementById('pubBadge').textContent = d.pubBadge;
   for (let i = 1; i <= 4; i++) {
     document.getElementById(`p${i}Title`).textContent = d[`p${i}Title`];
